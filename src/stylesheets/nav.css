@@ -1,0 +1,53 @@
+#menu-img {
+    position: absolute;
+
+    cursor: pointer;
+    z-index: 10;
+    width: 36px;
+}
+
+#menu-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    height: 100vh;
+    width: 40vw;
+    max-width: 350px;
+
+    background-color: white;
+
+    z-index: 9;
+}
+
+#menu-background {
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    height: 100vh;
+    width: 100vw;
+
+    background-color: rgba(0, 0, 0, 0.3);
+
+    z-index: 8;
+}
+
+#menu-nav a {
+    font: inherit;
+    color: inherit;
+    text-decoration: inherit;
+
+    text-align: center;
+
+    width: 100%;
+}
+
+/* #menu-nav a:hover {
+    background-color: rgba(0, 0, 0, 0.11);
+} */
