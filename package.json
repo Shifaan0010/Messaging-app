@@ -1,0 +1,17 @@
+{
+  "name": "messaging-app",
+  "version": "1.0.0",
+  "description": "A web app that sends and recieves messages",
+  "main": "app.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src --out-dir compiled --copy-files --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.5",
+    "@babel/preset-react": "^7.14.5"
+  }
+}
