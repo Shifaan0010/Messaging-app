@@ -8,24 +8,14 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-}
-
-h1 {
-    font-size: 3rem;
-}
-
-.container {
-    width: 100vw;
-    min-height: 100vh;
     padding: 10px;
-    box-sizing: border-box;
 }
 
-.flex-center {
+.center-content {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 80vh;
+    height: 100vh;
 }
 
 main {
@@ -38,9 +28,21 @@ ul {
 }
 
 h1 {
+    font-size: 3rem;
     margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
 }
 
 h3 {
     margin: 10px 0;
+}
+
+a {
+    font: inherit;
+    color: inherit;
+    text-decoration: inherit;
 }

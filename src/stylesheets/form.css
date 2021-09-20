@@ -1,0 +1,36 @@
+form {
+    padding: 25px;
+    /* box-shadow: 0 0 2px; */
+}
+
+input[type="text"],
+input[type="password"] {
+    box-shadow: 0 0 2px;
+    padding: 10px;
+    font: inherit;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+form div {
+    margin: 20px 0;
+}
+
+button {
+    font: inherit;
+    padding: 10px 25px;
+    cursor: pointer;
+    background-color: white;
+    box-shadow: 0 0 2px;
+}
+
+#login {
+    width: clamp(35%, 400px, 100%);
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}

@@ -4,7 +4,7 @@ class NavImg extends React.Component {
             <img
                 id="menu-img"
                 src="images/menu.svg"
-                alt="nav"
+                alt="menu"
                 onClick={this.props.onClick}
             ></img>
         );
@@ -62,4 +62,4 @@ class Navigation extends React.Component {
     }
 }
 
-ReactDOM.render(<Navigation />, $('#nav-menu')[0]);
+$( () => ReactDOM.render(<Navigation />, $('#nav-menu')[0]) );
