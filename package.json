@@ -4,7 +4,7 @@
   "description": "A web app that sends and recieves messages",
   "main": "app.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run build & serve compiled/",
     "build": "babel src --out-dir compiled --copy-files --watch"
   },
   "author": "",
