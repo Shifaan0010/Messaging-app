@@ -4,18 +4,28 @@
     margin: 0;
     border: 0;
     padding: 0;
+
+    font-weight: normal;
+
+    box-sizing: border-box;
 }
 
 body {
     font-family: 'Roboto', sans-serif;
     padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+
+    height: 100vh;
 }
 
 .center-content {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    
+    flex: auto;
 }
 
 main {

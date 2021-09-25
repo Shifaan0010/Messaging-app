@@ -28,33 +28,36 @@ class Navigation extends React.Component {
     render() {
         if (this.state.active) {
             return (
-                <div>
+                <>
                     <NavImg onClick={() => this.toggleState()} />
-                    <nav id="menu-nav">
-                        <a href="login.html">
-                            <h3>Login</h3>
-                        </a>
-                        <a href="create-account.html">
-                            <h3>Create Account</h3>
-                        </a>
-                        <a href="about.html">
-                            <h3>About</h3>
-                        </a>
-                        <a href="contact.html">
-                            <h3>Contact</h3>
-                        </a>
-                        <a href="team.html">
-                            <h3>Team</h3>
-                        </a>
-                        <a href="feedback.html">
-                            <h3>Feedback</h3>
-                        </a>
-                    </nav>
+                    <div id="menu-nav">
+                        <NavImg onClick={() => this.toggleState()} />
+                        <nav id="menu-list">
+                            <a href="login.html">
+                                <h3>Login</h3>
+                            </a>
+                            <a href="create-account.html">
+                                <h3>Create Account</h3>
+                            </a>
+                            <a href="about.html">
+                                <h3>About</h3>
+                            </a>
+                            <a href="contact.html">
+                                <h3>Contact</h3>
+                            </a>
+                            <a href="team.html">
+                                <h3>Team</h3>
+                            </a>
+                            <a href="feedback.html">
+                                <h3>Feedback</h3>
+                            </a>
+                        </nav>
+                    </div>
                     <div
                         id="menu-background"
                         onClick={() => this.toggleState()}
                     ></div>
-                </div>
+                </>
             );
         } else {
             return <NavImg onClick={() => this.toggleState()} />;
@@ -62,4 +65,4 @@ class Navigation extends React.Component {
     }
 }
 
-$( () => ReactDOM.render(<Navigation />, $('#nav-menu')[0]) );
+$(() => ReactDOM.render(<Navigation />, $('#nav-menu')[0]));

@@ -26,9 +26,10 @@ button {
 
 #login {
     width: clamp(35%, 400px, 100%);
+    margin-bottom: 50px;
 }
 
-.flex-row {
+#login-submit {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
