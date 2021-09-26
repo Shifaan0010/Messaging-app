@@ -1,5 +1,5 @@
 #menu-img {
-    /* position: absolute; */
+    display: block;
 
     cursor: pointer;
     z-index: 10;

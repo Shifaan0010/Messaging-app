@@ -1,0 +1,87 @@
+#app {
+    flex: auto;
+
+    border-top: 1px solid black;
+
+    display: flex;
+    flex-direction: row;
+
+    overflow-y: hidden;
+}
+
+#contacts {
+    flex: 0 0 300px;
+
+    border-right: 1px solid black;
+
+    overflow-y: scroll;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.contact {
+    padding: 20px 10px;
+
+    cursor: pointer;
+}
+
+#contacts > div + div {
+    border-top: 1px solid rgba(173, 173, 173, 0.5);
+}
+
+#messages-send {
+    flex: 1 0 300px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#messages {
+    flex: 1 0 100px;
+
+    overflow-y: scroll;
+
+    display: flex;
+    flex-direction: column-reverse;
+
+    padding: 10px;
+}
+
+.message {
+    margin: 5px;
+    padding: 10px;
+    box-shadow: 0 0 2px;
+
+    width: fit-content;
+    max-width: min(500px, 80%);
+}
+
+.message.sent {
+    align-self: flex-end;
+}
+
+.message.recieved {
+    align-self: flex-start;
+}
+
+#send {
+    flex: 0 0 40px;
+
+    margin: 10px 0;
+
+    display: flex;
+    flex-direction: row;
+}
+
+#send input {
+    flex: 1 0 150px;
+
+    margin: 0 8px;
+}
+
+#send button {
+    flex: 0;
+
+    margin: 0 8px 0 0;
+}
