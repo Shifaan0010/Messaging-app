@@ -11,6 +11,45 @@ class NavImg extends React.Component {
     }
 }
 
+class HeadingLink extends React.Component {
+    render() {
+        return (
+            <a href={this.props.link}>
+                <h3>{this.props.children}</h3>
+            </a>
+        );
+    }
+}
+
+class NavMenuList extends React.Component {
+    render() {
+        const links = this.props.items.map((item) => (
+            <HeadingLink key={item.text} link={item.link}>
+                {item.text}
+            </HeadingLink>
+        ));
+
+        return <nav id="menu-list">{links}</nav>;
+    }
+}
+
+class NavMenu extends React.Component {
+    render() {
+        return (
+            <div id="menu-nav">
+                <NavImg onClick={this.props.onNavImgClick} />
+                <NavMenuList items={this.props.navItems}></NavMenuList>
+            </div>
+        );
+    }
+}
+
+class NavBackground extends React.Component {
+    render() {
+        return <div id="menu-background" onClick={this.props.onClick}></div>;
+    }
+}
+
 class Navigation extends React.Component {
     constructor(props) {
         super(props);
@@ -30,33 +69,10 @@ class Navigation extends React.Component {
             return (
                 <>
                     <NavImg onClick={() => this.toggleState()} />
-                    <div id="menu-nav">
-                        <NavImg onClick={() => this.toggleState()} />
-                        <nav id="menu-list">
-                            <a href="login.html">
-                                <h3>Login</h3>
-                            </a>
-                            <a href="create-account.html">
-                                <h3>Create Account</h3>
-                            </a>
-                            <a href="about.html">
-                                <h3>About</h3>
-                            </a>
-                            <a href="contact.html">
-                                <h3>Contact</h3>
-                            </a>
-                            <a href="team.html">
-                                <h3>Team</h3>
-                            </a>
-                            <a href="feedback.html">
-                                <h3>Feedback</h3>
-                            </a>
-                        </nav>
-                    </div>
-                    <div
-                        id="menu-background"
+                    <NavMenu onNavImgClick={() => this.toggleState()} navItems={this.props.navItems}></NavMenu>
+                    <NavBackground
                         onClick={() => this.toggleState()}
-                    ></div>
+                    ></NavBackground>
                 </>
             );
         } else {
@@ -65,4 +81,31 @@ class Navigation extends React.Component {
     }
 }
 
-$(() => ReactDOM.render(<Navigation />, $('#nav-menu')[0]));
+const navItems = [
+    {
+        link: 'login.html',
+        text: 'Login',
+    },
+    {
+        link: 'create-account.html',
+        text: 'Create Account',
+    },
+    {
+        link: 'about.html',
+        text: 'About',
+    },
+    {
+        link: 'contact.html',
+        text: 'Contact',
+    },
+    {
+        link: 'team.html',
+        text: 'Team',
+    },
+    {
+        link: 'feedback.html',
+        text: 'Feedback',
+    },
+];
+
+$(() => ReactDOM.render(<Navigation navItems={navItems} />, $('#nav-menu')[0]));
