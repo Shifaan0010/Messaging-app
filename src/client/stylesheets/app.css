@@ -26,6 +26,10 @@
     cursor: pointer;
 }
 
+.selected.contact {
+    background-color: rgba(128, 128, 128, 0.3);
+}
+
 #contacts > div + div {
     border-top: 1px solid rgba(173, 173, 173, 0.5);
 }
@@ -55,6 +59,10 @@
 
     width: fit-content;
     max-width: min(500px, 80%);
+}
+
+.message .username {
+    font-size: 0.7em;
 }
 
 .message.sent {
