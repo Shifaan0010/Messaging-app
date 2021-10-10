@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Messaging App</title>
 
     <link rel="stylesheet" href="stylesheets/main.css">
     <link rel="stylesheet" href="stylesheets/nav.css">
     <link rel="stylesheet" href="stylesheets/form.css">
+    <link rel="stylesheet" href="stylesheets/app.css">
 
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -18,33 +19,13 @@
     <script src="libraries/jquery-3.6.0.min.js"></script>
     <script src="libraries/react.development.js"></script>
     <script src="libraries/react-dom.development.js"></script>
+    <script src="login-send-recieve.js"></script>
     <script src="navigation.js"></script>
-    <script src="nav-only.js"></script>
+    <script src="app.js"></script>
 </head>
 
 <body>
-    <div id="container">
-        <header id="nav-container"></header>
-        <div class="center-content">
-            <main id="login">
-                <form>
-                    <div>
-                        <h2>Messaging App</h2>
-                    </div>
-                    <div>
-                        <input type="text" name="username" id="username" placeholder="Username">
-                    </div>
-                    <div>
-                        <input type="password" name="password" id="password" placeholder="Password">
-                    </div>
-                    <div id="login-submit">
-                        <a href="create-account.html">Create Account</a>
-                        <button type="submit">Login</button>
-                    </div>
-                </form>
-            </main>
-        </div>
-    </div>
+    <div id="container"></div>
 </body>
 
 </html>

@@ -3,7 +3,7 @@ class Header extends React.Component {
         return (
             <header>
                 <div>
-                    <Navigation navItems={navItems} />
+                    <Navigation navItems={this.props.loggedIn ? navItemsLoggedIn : navItemsLoggedOut} />
                 </div>
                 <div>
                     <h2>{this.props.children}</h2>
@@ -25,11 +25,7 @@ class Contacts extends React.Component {
             .fill()
             .map((_, i) => `Contact ${i}`)
             .map((name) => <Contact key={name}>{name}</Contact>);
-        return (
-            <div id="contacts">
-                {contacts}
-            </div>
-        );
+        return <div id="contacts">{contacts}</div>;
     }
 }
 
@@ -89,11 +85,11 @@ class App extends React.Component {
     render() {
         return (
             <>
-                <Header>Messaging App</Header>
+                <Header loggedIn={this.props.loggedIn}>Messaging App</Header>
                 <AppMain />
             </>
         );
     }
 }
 
-$(() => ReactDOM.render(<App />, $('#container')[0]));
+$(() => ReactDOM.render(<App loggedIn={loggedIn()}/>, $('#container')[0]));

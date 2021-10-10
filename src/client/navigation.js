@@ -1,3 +1,57 @@
+const navItemsLoggedOut = [
+    {
+        link: 'login.html',
+        text: 'Login',
+    },
+    {
+        link: 'create-account.html',
+        text: 'Create Account',
+    },
+    {
+        link: 'about.html',
+        text: 'About',
+    },
+    {
+        link: 'contact.html',
+        text: 'Contact',
+    },
+    {
+        link: 'team.html',
+        text: 'Team',
+    },
+    {
+        link: 'feedback.html',
+        text: 'Feedback',
+    },
+];
+
+const navItemsLoggedIn = [
+    {
+        link: 'profile.html',
+        text: 'Profile',
+    },
+    {
+        link: 'app.html',
+        text: 'Messages',
+    },
+    {
+        link: 'about.html',
+        text: 'About',
+    },
+    {
+        link: 'contact.html',
+        text: 'Contact',
+    },
+    {
+        link: 'team.html',
+        text: 'Team',
+    },
+    {
+        link: 'feedback.html',
+        text: 'Feedback',
+    },
+];
+
 class NavImg extends React.Component {
     render() {
         return (
@@ -81,30 +135,3 @@ class Navigation extends React.Component {
         }
     }
 }
-
-const navItems = [
-    {
-        link: 'login.html',
-        text: 'Login',
-    },
-    {
-        link: 'create-account.html',
-        text: 'Create Account',
-    },
-    {
-        link: 'about.html',
-        text: 'About',
-    },
-    {
-        link: 'contact.html',
-        text: 'Contact',
-    },
-    {
-        link: 'team.html',
-        text: 'Team',
-    },
-    {
-        link: 'feedback.html',
-        text: 'Feedback',
-    },
-];

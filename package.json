@@ -5,7 +5,7 @@
   "main": "app.html",
   "scripts": {
     "test": "npm run build & serve compiled/",
-    "build": "babel src --out-dir compiled --copy-files --watch"
+    "build": "babel src --out-dir compiled/src/ --copy-files --watch"
   },
   "author": "",
   "license": "ISC",
