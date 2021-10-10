@@ -6,7 +6,7 @@ class NavImg extends React.Component {
                 src="images/menu.svg"
                 alt="menu"
                 onClick={this.props.onClick}
-            ></img>
+            />
         );
     }
 }
@@ -38,7 +38,7 @@ class NavMenu extends React.Component {
         return (
             <div id="menu-nav">
                 <NavImg onClick={this.props.onNavImgClick} />
-                <NavMenuList items={this.props.navItems}></NavMenuList>
+                <NavMenuList items={this.props.navItems} />
             </div>
         );
     }
@@ -69,10 +69,11 @@ class Navigation extends React.Component {
             return (
                 <>
                     <NavImg onClick={() => this.toggleState()} />
-                    <NavMenu onNavImgClick={() => this.toggleState()} navItems={this.props.navItems}></NavMenu>
-                    <NavBackground
-                        onClick={() => this.toggleState()}
-                    ></NavBackground>
+                    <NavMenu
+                        onNavImgClick={() => this.toggleState()}
+                        navItems={this.props.navItems}
+                    />
+                    <NavBackground onClick={() => this.toggleState()} />
                 </>
             );
         } else {
@@ -107,5 +108,3 @@ const navItems = [
         text: 'Feedback',
     },
 ];
-
-$(() => ReactDOM.render(<Navigation navItems={navItems} />, $('#nav-menu')[0]));
