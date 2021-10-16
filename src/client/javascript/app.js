@@ -29,9 +29,9 @@ class InputSend extends React.Component {
     }
 
     onChange(event) {
-        this.setState({
+        this.setState((state, props) => ({
             value: event.target.value,
-        });
+        }));
     }
 
     onClick(event) {
@@ -65,9 +65,9 @@ class AppMain extends React.Component {
     }
 
     onSelectContact(name) {
-        this.setState({
+        this.setState((state, props) => ({
             selectedContact: name,
-        });
+        }));
         // console.log(`Selected ${name}`);
     }
 

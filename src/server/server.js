@@ -1,5 +1,7 @@
 const express = require('express');
 const path = require('path');
+const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser');
 
 const app = express();
 const port = 8000;
@@ -10,14 +12,8 @@ app.use('/javascript', express.static(path.join(__dirname, '../client/javascript
 app.use('/libraries', express.static(path.join(__dirname, '../client/libraries')));
 
 app.use(express.json())
-
-app.get(['/', '/app'], (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/app.html'));
-});
-
-app.get('/contacts/:username', (req, res) => {
-    res.send(['everyone', 'xyz', 'pqr']);
-});
+app.use(cookieParser())
+app.use(express.urlencoded({ extended: false }))
 
 const messages_everyone = [{ username: 'A', text: 'Hello World' }];
 
@@ -39,6 +35,32 @@ const users = {
     }
 };
 
+app.get(['/', '/app', '/login'], (req, res) => {
+    console.log(`Logged in cookies:`, req.cookies)
+    if (req.cookies['username']) {
+        res.sendFile(path.join(__dirname, '../client/app.html'));
+    } else {
+        res.sendFile(path.join(__dirname, '../client/login.html'))
+    }
+});
+
+app.post('/login', (req, res) => {
+    console.log(`Login request:`, req.body);
+    if (Object.keys(users).includes(req.body['username'])) {
+        res.cookie('username', req.body['username'], { maxAge: 3600, httpOnly: false });
+    }
+    res.redirect('/');
+})
+
+app.get('/logout', (req, res) => {
+    res.clearCookie('username');
+    res.redirect('/');
+})
+
+app.get('/contacts/:username', (req, res) => {
+    res.send(['everyone', 'XXXX']);
+});
+
 app.get('/messages/:username_1/:username_2', (req, res) => {
     res.send(
         users[req.params.username_1].messages[req.params.username_2] ?? []
@@ -46,7 +68,7 @@ app.get('/messages/:username_1/:username_2', (req, res) => {
 });
 
 app.post('/messages/', (req, res) => {
-    console.log(req.body);
+    console.log(`Message sent:`, req.body);
 
     if (req.body.to === 'everyone') {
         messages_everyone.unshift({

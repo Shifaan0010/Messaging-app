@@ -1,53 +1,57 @@
 const navItemsLoggedOut = [
     {
-        link: 'login.html',
+        link: 'login',
         text: 'Login',
     },
     {
-        link: 'create-account.html',
+        link: 'create-account',
         text: 'Create Account',
     },
     {
-        link: 'about.html',
+        link: 'about',
         text: 'About',
     },
     {
-        link: 'contact.html',
+        link: 'contact',
         text: 'Contact',
     },
     {
-        link: 'team.html',
+        link: 'team',
         text: 'Team',
     },
     {
-        link: 'feedback.html',
+        link: 'feedback',
         text: 'Feedback',
     },
 ];
 
 const navItemsLoggedIn = [
     {
-        link: 'profile.html',
+        link: 'profile',
         text: 'Profile',
     },
     {
-        link: 'app.html',
+        link: 'app',
         text: 'Messages',
     },
     {
-        link: 'about.html',
+        link: 'logout',
+        text: 'Logout'
+    },
+    {
+        link: 'about',
         text: 'About',
     },
     {
-        link: 'contact.html',
+        link: 'contact',
         text: 'Contact',
     },
     {
-        link: 'team.html',
+        link: 'team',
         text: 'Team',
     },
     {
-        link: 'feedback.html',
+        link: 'feedback',
         text: 'Feedback',
     },
 ];

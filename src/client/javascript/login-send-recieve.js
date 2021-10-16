@@ -11,6 +11,7 @@ function loggedIn() {
 
 async function getContacts(username) {
     if (typeof username !== 'string' || username.length === 0) {
+        console.log('Username is Empty');
         return [];
     }
     const contacts = await fetch(`contacts/${username}`);
@@ -39,6 +40,7 @@ async function sendMessage(message, from, to) {
         to.length === 0 ||
         message.length === 0
     ) {
+        console.log('From/To/Message is Empty');
         return;
     }
 

@@ -1,4 +1,3 @@
-
 class Message extends React.Component {
     render() {
         return (
@@ -16,14 +15,31 @@ class Messages extends React.Component {
 
         this.state = {
             messages: [],
+            intervalId: null,
         };
     }
 
-    async componentDidMount() {
-        const messages = await getMessages(this.props.username, this.props.selectedContact);
-        this.setState({
+    async updateMessages() {
+        const messages = await getMessages(
+            this.props.username,
+            this.props.selectedContact
+        );
+        this.setState((state, props) => ({
             messages: messages,
-        })
+        }));
+
+        console.log('Updated Messages');
+    }
+
+    componentDidMount() {
+        this.updateMessages();
+        this.setState((state, props) => ({
+            intervalId: setInterval(() => this.updateMessages(), 500),
+        }));
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.state.intervalId);
     }
 
     render() {

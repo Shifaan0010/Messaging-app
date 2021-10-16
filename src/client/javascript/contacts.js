@@ -1,6 +1,6 @@
 class Contact extends React.Component {
     render() {
-        return <div className={this.props.selected ? 'selected contact' : 'contact'} onClick={this.props.onClick}>{this.props.children}</div>;
+        return <div className={this.props.selected ? 'selected contact' : 'contact'} onClick={() => this.props.onClick()}>{this.props.children}</div>;
     }
 }
 
@@ -15,9 +15,9 @@ class Contacts extends React.Component {
 
     async componentDidMount() {
         const contacts = await getContacts(this.props.username);
-        this.setState({
+        this.setState((state, props) => ({
             contacts: contacts,
-        })
+        }))
     }
 
     render() {
