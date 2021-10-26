@@ -1,4 +1,4 @@
-const messages_everyone = [{ username: 'everyone', text: 'Hello World' }];
+const messages_everyone = [{ time: 0, username: 'everyone', text: 'Hello World' }];
 
 const users = {
     everyone: {},
@@ -47,6 +47,7 @@ function sendMessage(message, from, to) {
 
     if (message?.length >= 1) {
         users?.[from]?.messages?.[to].unshift({
+            time: Date.now(),
             username: from,
             text: message,
         });

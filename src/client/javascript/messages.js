@@ -24,6 +24,7 @@ class Messages extends React.Component {
             this.props.username,
             this.props.selectedContact
         );
+        
         this.setState((state, props) => ({
             messages: messages,
         }));
@@ -51,7 +52,7 @@ class Messages extends React.Component {
                         : 'recieved'
                 }
                 username={message.username}
-                key={i}
+                key={message.time}
             >
                 {message.text}
             </Message>

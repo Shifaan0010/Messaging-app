@@ -4,7 +4,7 @@
   "description": "A web app that sends and recieves messages",
   "main": "app.html",
   "scripts": {
-    "test": "node compiled/src/server/server.js",
+    "start": "node compiled/src/server/server.js",
     "build": "babel src --out-dir compiled/src/ --copy-files --watch --delete-dir-on-start"
   },
   "author": "",
