@@ -4,7 +4,7 @@
   "description": "A web app that sends and recieves messages",
   "main": "app.html",
   "scripts": {
-    "start": "node compiled/src/server/server.js",
+    "start-mon": "nodemon compiled/src/server/server.js",
     "build": "babel src --out-dir compiled/src/ --copy-files --watch --delete-dir-on-start"
   },
   "author": "",
@@ -12,7 +12,8 @@
   "devDependencies": {
     "@babel/cli": "^7.15.7",
     "@babel/core": "^7.15.5",
-    "@babel/preset-react": "^7.14.5"
+    "@babel/preset-react": "^7.14.5",
+    "nodemon": "^2.0.14"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
