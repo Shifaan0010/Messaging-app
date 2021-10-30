@@ -47,7 +47,6 @@ function sendMessage(message, from, to) {
 
     if (message?.length >= 1) {
         users?.[from]?.messages?.[to].unshift({
-            time: Date.now(),
             username: from,
             text: message,
         });

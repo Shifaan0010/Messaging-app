@@ -44,7 +44,7 @@ class Messages extends React.Component {
     }
 
     render() {
-        const messages = this.state.messages.map((message, i) => (
+        const messages = this.state.messages.map((message, i, array) => (
             <Message
                 direction={
                     message.username === this.props.username
@@ -52,7 +52,7 @@ class Messages extends React.Component {
                         : 'recieved'
                 }
                 username={message.username}
-                key={message.time}
+                key={array.length - i}
             >
                 {message.text}
             </Message>
