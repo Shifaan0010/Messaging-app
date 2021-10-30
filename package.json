@@ -5,13 +5,16 @@
   "main": "app.html",
   "scripts": {
     "start-mon": "nodemon compiled/src/server/server.js",
-    "build": "babel src --out-dir compiled/src/ --copy-files --watch --delete-dir-on-start"
+    "build-mon": "babel src --out-dir compiled/src/ --copy-files --watch --delete-dir-on-start",
+    "start": "node compiled/src/server/server.js",
+    "build": "babel src --out-dir compiled/src/ --copy-files --delete-dir-on-start"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.15.7",
     "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.16.0",
     "@babel/preset-react": "^7.14.5",
     "nodemon": "^2.0.14"
   },

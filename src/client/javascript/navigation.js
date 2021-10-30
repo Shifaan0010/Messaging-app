@@ -73,7 +73,7 @@ class HeadingLink extends React.Component {
     render() {
         return (
             <a href={this.props.link}>
-                <h3>{this.props.children}</h3>
+                <h4>{this.props.children}</h4>
             </a>
         );
     }

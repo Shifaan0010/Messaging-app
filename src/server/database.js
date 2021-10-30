@@ -1,21 +1,23 @@
-const messages_everyone = [{ time: 0, username: 'everyone', text: 'Hello World' }];
+const messages_everyone = [
+    { time: 0, username: 'everyone', text: 'Hello World' },
+];
 
 const users = {
     everyone: {},
     abc: {
-        password: '',
+        password: 'abc',
         messages: {
             everyone: messages_everyone,
         },
     },
     pqr: {
-        password: '',
+        password: 'pqr',
         messages: {
             everyone: messages_everyone,
         },
     },
     xyz: {
-        password: '',
+        password: 'xyz',
         messages: {
             everyone: messages_everyone,
         },
@@ -36,16 +38,16 @@ function getMessages(user1, user2) {
 
 function sendMessage(message, from, to) {
     if (
+        message?.length >= 1 &&
         Object.keys(users).includes(from) &&
-        Object.keys(users).includes(to) &&
-        !Object.keys(users[from].messages).includes(to)
+        Object.keys(users).includes(to)
     ) {
-        const m = [];
-        users[from].messages[to] = m;
-        users[to].messages[from] = m;
-    }
+        if (!Object.keys(users[from].messages).includes(to)) {
+            const m = [];
+            users[from].messages[to] = m;
+            users[to].messages[from] = m;
+        }
 
-    if (message?.length >= 1) {
         users?.[from]?.messages?.[to].unshift({
             username: from,
             text: message,
@@ -53,4 +55,25 @@ function sendMessage(message, from, to) {
     }
 }
 
-module.exports = { validateUser, getUsers, getMessages, sendMessage };
+function createUser({ firstname, lastname, dob, username, password }) {
+    if (!Object.keys(users).includes(username)) {
+        users[username] = {
+            firstname,
+            lastname,
+            dob,
+            password,
+            messages: {
+                everyone: messages_everyone,
+            },
+        };
+        return users[username];
+    }
+}
+
+module.exports = {
+    validateUser,
+    getUsers,
+    getMessages,
+    sendMessage,
+    createUser,
+};

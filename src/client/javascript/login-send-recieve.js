@@ -1,5 +1,5 @@
 function loggedIn() {
-    cookie = document.cookie
+    const cookie = document.cookie
         .split(';')
         .find((line) => line.startsWith('username'));
     if (typeof cookie === 'string') {

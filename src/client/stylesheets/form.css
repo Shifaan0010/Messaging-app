@@ -4,7 +4,8 @@ form {
 }
 
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="date"] {
     box-shadow: 0 0 2px;
     padding: 10px;
     font: inherit;
@@ -14,6 +15,15 @@ input[type="password"] {
 
 form div {
     margin: 20px 0;
+}
+
+form div.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+form div.flex-row > input + input {
+    margin-left: 10px;
 }
 
 button {
@@ -26,7 +36,12 @@ button {
 
 #login {
     width: clamp(35%, 400px, 100%);
-    margin-bottom: 50px;
+    margin: 0 0 50px 0;
+}
+
+#create-account {
+    width: clamp(35%, 500px, 100%);
+    margin: 0 0 50px 0;
 }
 
 #login-submit {
