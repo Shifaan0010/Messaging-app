@@ -5,7 +5,8 @@ form {
 
 input[type="text"],
 input[type="password"],
-input[type="date"] {
+input[type="date"],
+textarea {
     box-shadow: 0 0 2px;
     padding: 10px;
     font: inherit;

@@ -28,7 +28,7 @@ const navItemsLoggedOut = [
 const navItemsLoggedIn = [
     {
         link: 'profile',
-        text: 'Profile',
+        text: 'Edit Profile',
     },
     {
         link: 'app',
@@ -117,9 +117,9 @@ class Navigation extends React.Component {
     }
 
     toggleState() {
-        this.setState({
-            active: !this.state.active,
-        });
+        this.setState((state, props) => ({
+            active: !state.active,
+        }));
     }
 
     render() {

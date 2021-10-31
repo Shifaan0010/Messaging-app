@@ -30,8 +30,8 @@ app.use(require('./app-login'));
 app.use(require('./messages-contacts'));
 app.use(require('./team-about-contact.js'));
 app.use(require('./create-account.js'));
-// app.use(require('./profile.js'))
-// app.use(require('./feedback.js'))
+app.use(require('./profile.js'))
+app.use(require('./feedback.js'))
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);

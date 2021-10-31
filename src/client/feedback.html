@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="stylesheets/main.css">
     <link rel="stylesheet" href="stylesheets/nav.css">
+    <link rel="stylesheet" href="stylesheets/form.css">
 
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -27,11 +28,13 @@
         <header id="nav-container"></header>
         <div class="center-content">
             <main>
-                <h1>Team</h1>
-                <ul>
-                    <h3>Mohamed Shifaan : PES2UG20CS520</h3>
-                    <h3>Sumant Kulkarni : PES2UG20CS469</h3>
-                </ul>
+                <form method="post" action="/feedback">
+                    <h1>Feedback</h1>
+                    <div>
+                        <textarea name="feedback" id="feedback" placeholder="Enter your feedback here" rows="10"></textarea>
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
             </main>
         </div>
     </div>

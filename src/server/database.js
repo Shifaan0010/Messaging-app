@@ -70,10 +70,20 @@ function createUser({ firstname, lastname, dob, username, password }) {
     }
 }
 
+function setUser(username, { firstname, lastname, dob }) {
+    try {
+        Object.assign(users[username], { firstname, lastname, dob });
+        return username;
+    } catch (TypeError) {
+        return 'User not found';
+    }
+}
+
 module.exports = {
     validateUser,
     getUsers,
     getMessages,
     sendMessage,
     createUser,
+    setUser,
 };
