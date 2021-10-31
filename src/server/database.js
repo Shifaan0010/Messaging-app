@@ -1,27 +1,9 @@
 const messages_everyone = [
-    { time: 0, username: 'everyone', text: 'Hello World' },
+    { username: 'everyone', text: 'Hello World' },
 ];
 
 const users = {
     everyone: {},
-    abc: {
-        password: 'abc',
-        messages: {
-            everyone: messages_everyone,
-        },
-    },
-    pqr: {
-        password: 'pqr',
-        messages: {
-            everyone: messages_everyone,
-        },
-    },
-    xyz: {
-        password: 'xyz',
-        messages: {
-            everyone: messages_everyone,
-        },
-    },
 };
 
 function validateUser(username, password) {
@@ -73,7 +55,7 @@ function createUser({ firstname, lastname, dob, username, password }) {
 function setUser(username, { firstname, lastname, dob }) {
     try {
         Object.assign(users[username], { firstname, lastname, dob });
-        return username;
+        return `${username} ${firstname} ${lastname} ${dob}`;
     } catch (TypeError) {
         return 'User not found';
     }
