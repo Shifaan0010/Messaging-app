@@ -2,6 +2,7 @@
 
 compiled
 src/libraries
+database
 
 # Logs
 logs
