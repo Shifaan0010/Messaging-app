@@ -13,9 +13,9 @@ router.get('/profile', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/profile.html'));
 })
 
-router.post('/profile', (req, res) => {
+router.post('/profile', async(req, res) => {
     if (req.cookies['username']) {
-        console.log(`Modified profile: ${setUser(req.cookies['username'], req.body)}`);
+        console.log(`Modified profile: ${await setUser(req.cookies['username'], req.body)}`);
     }
     res.redirect('/');
 })

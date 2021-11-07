@@ -11,8 +11,8 @@ router.get('/create-account', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/create-account.html'));
 });
 
-router.post('/create-account', (req, res) => {
-    console.log(`Created new user: ${createUser(req.body)}`);
+router.post('/create-account', async(req, res) => {
+    console.log(`Created new user: ${await createUser(req.body)}`);
     res.redirect('/');
 });
 

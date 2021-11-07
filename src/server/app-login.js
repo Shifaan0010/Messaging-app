@@ -18,9 +18,9 @@ router.get(['/', '/app', '/login'], (req, res) => {
     }
 });
 
-router.post('/login', (req, res) => {
+router.post('/login', async(req, res) => {
     console.log(`Login request:`, req.body);
-    if (validateUser(req.body['username'], req.body['password'])) {
+    if (await validateUser(req.body['username'], req.body['password'])) {
         res.cookie('username', req.body['username'], {
             maxAge: 3600000,
             httpOnly: false,
