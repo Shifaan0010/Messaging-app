@@ -1,13 +1,13 @@
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
+import express from 'express';
+import path from 'path';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
 
 const router = express.Router();
 router.use(cookieParser());
 router.use(express.urlencoded({ extended: false }));
 
-const { validateUser } = require('./database')
+import { validateUser } from './database';
 
 router.get(['/', '/app', '/login'], (req, res) => {
     console.log(`Logged in cookies:`, req.cookies);

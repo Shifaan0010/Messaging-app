@@ -1,11 +1,11 @@
-const express = require('express');
-const path = require('path');
+import express from 'express';
+import path from 'path';
 
 const router = express.Router();
 
 router.use(express.urlencoded({ extended: false }));
 
-const { createUser } = require('./database.js');
+import { createUser } from './database.js';
 
 router.get('/create-account', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/create-account.html'));

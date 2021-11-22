@@ -1,13 +1,13 @@
-const express = require('express');
-const path = require('path');
+import express from 'express';
+import path from 'path';
 
-const cookieParser = require('cookie-parser');
+import cookieParser from 'cookie-parser';
 
 const router = express.Router();
 router.use(cookieParser());
 router.use(express.urlencoded({ extended: false }));
 
-const { setUser } = require('./database')
+import { setUser } from './database';
 
 router.get('/profile', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/profile.html'));
