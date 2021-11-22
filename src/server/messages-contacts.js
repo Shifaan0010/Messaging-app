@@ -1,9 +1,9 @@
-const express = require('express');
+import express from 'express';
 
 const router = express.Router();
 router.use(express.json());
 
-const { getUsers, getMessages, sendMessage } = require('./database');
+import { getUsers, getMessages, sendMessage } from './database';
 
 router.get('/contacts/:username', (req, res) => {
     res.send(getUsers().filter((name) => name !== req.params.username));

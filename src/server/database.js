@@ -61,7 +61,7 @@ function setUser(username, { firstname, lastname, dob }) {
     }
 }
 
-module.exports = {
+export {
     validateUser,
     getUsers,
     getMessages,
