@@ -192,7 +192,7 @@ async function setUser(username, { firstname, lastname, dob }) {
     return updated;
 }
 
-module.exports = {
+export {
     validateUser,
     getUsers,
     getMessages,
