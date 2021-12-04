@@ -10,7 +10,7 @@ router.use(express.urlencoded({ extended: false }));
 import { setUser } from './database';
 
 router.get('/profile', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/profile.html'));
+    res.sendFile(path.join(__dirname, '../client/html/profile.html'));
 })
 
 router.post('/profile', (req, res) => {
