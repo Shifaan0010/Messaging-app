@@ -8,7 +8,7 @@ router.use(express.urlencoded({ extended: false }));
 import { createUser } from './database.js';
 
 router.get('/create-account', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/create-account.html'));
+    res.sendFile(path.join(__dirname, '../client/html/create-account.html'));
 });
 
 router.post('/create-account', async(req, res) => {

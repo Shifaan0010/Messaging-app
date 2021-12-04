@@ -12,9 +12,9 @@ import { validateUser } from './database';
 router.get(['/', '/app', '/login'], (req, res) => {
     console.log(`Logged in cookies:`, req.cookies);
     if (req.cookies['username']) {
-        res.sendFile(path.join(__dirname, '../client/app.html'));
+        res.sendFile(path.join(__dirname, '../client/html/app.html'));
     } else {
-        res.sendFile(path.join(__dirname, '../client/login.html'));
+        res.sendFile(path.join(__dirname, '../client/html/login.html'));
     }
 });
 
