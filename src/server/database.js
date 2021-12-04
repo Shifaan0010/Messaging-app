@@ -1,64 +1,195 @@
-const messages_everyone = [
-    { username: 'everyone', text: 'Hello World' },
-];
+const { MongoClient } = require('mongodb');
 
-const users = {
-    everyone: {},
-};
+const uri = 'mongodb://localhost:27017';
 
-function validateUser(username, password) {
-    return users?.[username]?.password === password ?? false;
+const mongoClient = new MongoClient(uri);
+
+const databaseName = 'messaging-app';
+
+(async () => {
+    await mongoClient.connect();
+
+    const everyoneUser = await mongoClient
+        .db(databaseName)
+        .collection('users')
+        .findOne({ username: 'everyone' });
+
+    if (everyoneUser == null) {
+        await mongoClient
+            .db(databaseName)
+            .collection('users')
+            .insertOne({ username: 'everyone' });
+    }
+
+    const everyoneMessages = await mongoClient
+        .db(databaseName)
+        .collection('messages')
+        .findOne({ group: 'everyone' });
+
+    if (everyoneMessages == null) {
+        await mongoClient
+            .db(databaseName)
+            .collection('messages')
+            .insertOne({ group: 'everyone', messages: [] });
+    }
+
+    console.log('Connected successfully to mongodb');
+})();
+
+async function findUser(username) {
+    return await mongoClient
+        .db(databaseName)
+        .collection('users')
+        .findOne({ username: username });
 }
 
-function getUsers() {
-    return Object.keys(users);
+async function validateUser(username, password) {
+    const user = await findUser(username);
+
+    // console.log(user);
+
+    return user?.password === password;
 }
 
-function getMessages(user1, user2) {
-    return users?.[user1]?.messages?.[user2] ?? [];
+async function getUsers() {
+    const cursor = await mongoClient
+        .db(databaseName)
+        .collection('users')
+        .find({}, { projection: { username: 1 } });
+    const userList = await cursor.toArray();
+
+    cursor.close();
+
+    // console.log(userList);
+
+    return userList.map((user) => user.username);
 }
 
-function sendMessage(message, from, to) {
-    if (
-        message?.length >= 1 &&
-        Object.keys(users).includes(from) &&
-        Object.keys(users).includes(to)
-    ) {
-        if (!Object.keys(users[from].messages).includes(to)) {
-            const m = [];
-            users[from].messages[to] = m;
-            users[to].messages[from] = m;
-        }
+async function getMessages(user1, user2) {
+    try {
+        const user = await findUser(user1);
 
-        users?.[from]?.messages?.[to].unshift({
-            username: from,
-            text: message,
-        });
+        const messageDoc = await mongoClient
+            .db(databaseName)
+            .collection('messages')
+            .findOne({ _id: user.messages[user2] });
+
+        return messageDoc.messages;
+    } catch (error) {
+        console.log(`Could not find messages for ${user1} ${user2}`);
+        return [];
     }
 }
 
-function createUser({ firstname, lastname, dob, username, password }) {
-    if (!Object.keys(users).includes(username)) {
-        users[username] = {
+async function sendMessage(message, from, to) {
+    const database = mongoClient.db(databaseName);
+    const users = database.collection('users');
+    const messages = database.collection('messages');
+
+    if (message?.length >= 1) {
+        const fromUser = await findUser(from);
+        const toUser = await findUser(to);
+
+        if (fromUser && toUser) {
+            // console.log(fromUser);
+            // console.log(toUser);
+
+            let added = null;
+
+            if (!Object.keys(fromUser.messages).includes(to)) {
+                added = await messages.insertOne({
+                    messages: [],
+                });
+
+                const o2 = {
+                    $set: {},
+                };
+                o2.$set[`messages.${to}`] = added.insertedId;
+
+                await users.updateOne(fromUser, o2);
+
+                const o = {
+                    $set: {},
+                };
+                o.$set[`messages.${from}`] = added.insertedId;
+                // console.log(o);
+
+                await users.updateOne(toUser, o);
+
+                // console.log(added.insertedId);
+            }
+
+            await messages.updateOne(
+                {
+                    _id:
+                        added != null
+                            ? added.insertedId
+                            : fromUser.messages[to],
+                },
+                {
+                    $push: {
+                        messages: {
+                            $each: [
+                                {
+                                    username: from,
+                                    text: message,
+                                },
+                            ],
+                            $position: 0,
+                        },
+                    },
+                }
+            );
+        }
+    }
+}
+
+async function createUser({ firstname, lastname, dob, username, password }) {
+    const database = mongoClient.db(databaseName);
+    const users = database.collection('users');
+
+    const alreadyUsed = await findUser(username);
+
+    // console.log(alreadyPresent);
+
+    if (alreadyUsed == null) {
+        await users.insertOne({
             firstname,
             lastname,
             dob,
+            username,
             password,
             messages: {
-                everyone: messages_everyone,
+                everyone: (
+                    await mongoClient
+                        .db(databaseName)
+                        .collection('messages')
+                        .findOne({ group: 'everyone' })
+                )['_id'],
             },
-        };
-        return users[username];
+        });
+        return username;
     }
 }
 
-function setUser(username, { firstname, lastname, dob }) {
-    try {
-        Object.assign(users[username], { firstname, lastname, dob });
-        return `${username} ${firstname} ${lastname} ${dob}`;
-    } catch (TypeError) {
-        return 'User not found';
-    }
+async function setUser(username, { firstname, lastname, dob }) {
+    // console.log(username, { firstname, lastname, dob })
+
+    const updated = await mongoClient
+        .db(databaseName)
+        .collection('users')
+        .updateOne(
+            { username: username },
+            {
+                $set: {
+                    firstname: firstname,
+                    lastname: lastname,
+                    dob: dob,
+                },
+            }
+        );
+
+    return updated;
 }
 
 export {
