@@ -52,7 +52,7 @@ async function getMessages(user1, user2) {
 
         return messageDoc.messages;
     } catch (error) {
-        console.log(`Could not find messages for ${user1} ${user2}`);
+        // console.log(`Could not find messages for ${user1} ${user2}`);
         return [];
     }
 }
@@ -77,20 +77,17 @@ async function sendMessage(message, from, to) {
                     messages: [],
                 });
 
-                const o2 = {
-                    $set: {},
-                };
-                o2.$set[`messages.${to}`] = added.insertedId;
+                await users.updateOne(fromUser, {
+                    $set: {
+                        [`messages.${to}`]: added.insertedId,
+                    },
+                });
 
-                await users.updateOne(fromUser, o2);
-
-                const o = {
-                    $set: {},
-                };
-                o.$set[`messages.${from}`] = added.insertedId;
-                // console.log(o);
-
-                await users.updateOne(toUser, o);
+                await users.updateOne(toUser, {
+                    $set: {
+                        [`messages.${from}`]: added.insertedId,
+                    },
+                });
 
                 // console.log(added.insertedId);
             }
