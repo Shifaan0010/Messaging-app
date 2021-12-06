@@ -18,13 +18,6 @@ router.post('/messages/', async(req, res) => {
 
     await sendMessage(req.body.message, req.body.from, req.body.to);
 
-    // if (req.body.to === 'everyone') {
-    //     messages_everyone.unshift({
-    //         username: req.body.from,
-    //         text: req.body.message,
-    //     });
-    // }
-
     res.send('Message Recieved');
 });
 
