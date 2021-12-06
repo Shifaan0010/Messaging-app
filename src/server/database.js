@@ -9,30 +9,6 @@ const databaseName = 'messaging-app';
 (async () => {
     await mongoClient.connect();
 
-    const everyoneUser = await mongoClient
-        .db(databaseName)
-        .collection('users')
-        .findOne({ username: 'everyone' });
-
-    if (everyoneUser == null) {
-        await mongoClient
-            .db(databaseName)
-            .collection('users')
-            .insertOne({ username: 'everyone' });
-    }
-
-    const everyoneMessages = await mongoClient
-        .db(databaseName)
-        .collection('messages')
-        .findOne({ group: 'everyone' });
-
-    if (everyoneMessages == null) {
-        await mongoClient
-            .db(databaseName)
-            .collection('messages')
-            .insertOne({ group: 'everyone', messages: [] });
-    }
-
     console.log('Connected successfully to mongodb');
 })();
 
@@ -159,14 +135,7 @@ async function createUser({ firstname, lastname, dob, username, password }) {
             dob,
             username,
             password,
-            messages: {
-                everyone: (
-                    await mongoClient
-                        .db(databaseName)
-                        .collection('messages')
-                        .findOne({ group: 'everyone' })
-                )['_id'],
-            },
+            messages: {},
         });
         return username;
     }
